@@ -1,0 +1,21 @@
+body {
+    width: 280px;
+    height: 420px;
+    padding-top: 10px;
+}
+
+#toast {
+    margin-top: 2px;
+}
+
+.js-animation {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 1s;
+}
+.js-animation.is-show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+}

@@ -1,0 +1,79 @@
+#fixed_container {
+    width:100%;
+    position: absolute;
+    z-index: 10;
+
+    /* background-color: #181818; */
+    /* background-color: #202020; */
+    color: var(--yt-live-chat-primary-text-color);    
+    background: var(--yt-live-chat-background-color);
+
+    box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+#fixed_container #content {
+    width:100%;
+    margin-top:-2px;
+}
+
+#fixed_container i {
+    color: var(--yt-spec-icon-inactive);
+    cursor: pointer;
+}
+#fixed_container i:hover {
+    color: var(--yt-spec-icon-active);
+}
+
+
+#fixed_container .yt-live-chat-author-chip[type='verified'] {
+    fill: var(--yt-live-chat-verified-color, #999);
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+    margin-right: -2px;
+}
+#fixed_container .yt-live-chat-author-chip[type='verified'] #image {
+    padding-top: 4px;
+}
+#fixed_container .yt-live-chat-author-chip[type='moderator'] {
+    fill: var(--yt-live-chat-moderator-color, #5e84f1);
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+}
+#fixed_container .yt-live-chat-author-chip[type='moderator'] #image {
+    padding-top: 4px;
+}
+
+
+/* yt-*タグが本来持っていたスタイルを補完 */
+._yt_live_chat_text_message_renderer {
+    position: relative;
+    font-size: 13px;
+    padding: 4px 24px;
+    overflow: hidden;
+    contain: content;
+    --yt-endpoint-color: var(--yt-live-chat-primary-text-color, var(--yt-luna-black));
+    --yt-endpoint-hover-color: var(--yt-live-chat-primary-text-color, var(--yt-endpoint-color));
+    display: var(--layout-horizontal_-_display);
+    -ms-flex-direction: var(--layout-horizontal_-_-ms-flex-direction);
+    -webkit-flex-direction: var(--layout-horizontal_-_-webkit-flex-direction);
+    flex-direction: var(--layout-horizontal_-_flex-direction);
+    -ms-flex-align: var(--layout-start_-_-ms-flex-align);
+    -webkit-align-items: var(--layout-start_-_-webkit-align-items);
+    align-items: var(--layout-start_-_align-items);
+}
+
+._yt_live_chat_author_chip {
+    display: var(--layout-inline_-_display);
+    -ms-flex-align: var(--layout-baseline_-_-ms-flex-align);
+    -webkit-align-items: var(--layout-baseline_-_-webkit-align-items);
+    align-items: var(--layout-baseline_-_align-items);
+
+    margin-right: 8px;
+}
+
+._yt-live-chat-author-badge-renderer {
+    display: inline-block;
+}

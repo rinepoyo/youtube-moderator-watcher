@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="options.css">
+    <link rel="stylesheet" href="lib/materialize.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="time">
+                            <option value="5">5秒</option>
+                            <option value="10">10秒</option>
+                            <option value="15">15秒</option>
+                            <option value="20">20秒</option>
+                            <option value="25">25秒</option>
+                            <option value="30" selected>30秒</option>
+                            <option value="60">60秒</option>
+                        </select>
+                        <label>発言から固定解除までの時間</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="lib/materialize.min.js"></script>
+    <script type="text/javascript" src="storage.js"></script>
+    <script type="text/javascript" src="options.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+    "name": "YouTube Moderator Watcher",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "description": "YouTube Live のチャットで、モデレータとオーナーの発言を一定時間画面上に固定します。",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "run_at": "document_idle",
+            "all_frames": true,
+            "matches": [
+                "https://*.youtube.com/live_chat**"
+            ],
+            "js": [
+                "storage.js",
+                "content.js"
+            ],
+            "css": [
+                "content.css"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "image/*"
+    ],
+    "browser_action": {
+        "default_popup": "options.html"
+    }
+}

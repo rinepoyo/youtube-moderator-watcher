@@ -89,7 +89,18 @@ async function fixChat(node, timestamp) {
     clone.innerHTML = node.innerHTML
     clone.removeAttribute('id')
     clone.setAttribute('class', node.className)
-    clone.classList.add('_yt_live_chat_text_message_renderer')
+    if (node.hasAttribute('author-is-owner')) {
+        clone.setAttribute('author-is-owner', "")
+    } else {
+        // 確認済みモデレータの場合にスタイル調整
+        const verified = node.querySelector('[type="verified"]')
+        if (verified) {
+            clone.classList.add('_verified_moderator')
+        }
+    }
+    clone.setAttribute('author-type', node.getAttribute('author-type'))
+    clone.classList.add('_yt-live-chat-text-message-renderer')
+
 
     // divタグで複製してから、元のyt-*タグを削除
     const imgParOrg = clone.querySelector('yt-img-shadow')
@@ -107,7 +118,10 @@ async function fixChat(node, timestamp) {
         const authorChip = document.createElement('div')
         authorChip.setAttribute('class', authorChipOrg.className)
         authorChip.innerHTML = authorChipOrg.innerHTML
-        authorChip.classList.add('_yt_live_chat_author_chip')
+        authorChip.classList.add('_yt-live-chat-author-chip')
+        if (authorChipOrg.hasAttribute('is-highlighted')) {
+            authorChip.setAttribute('is-highlighted', "")
+        }
         authorChipOrg.parentNode.insertBefore(authorChip, authorChipOrg)
         authorChipOrg.outerHTML = ""
     }
@@ -135,12 +149,15 @@ async function fixChat(node, timestamp) {
 
     // 固定時間を計算
     const fixTime = await getFixTime();
+    if (fixTime === 0) {
+        // 永続固定
+        container.appendChild(clone)
+        return
+    }
     const removeTime = fixTime - (new Date().getTime() - timestamp)
     if (removeTime > 0) {
         container.appendChild(clone)
         reserveRemoveFixedChat(clone, removeTime)
-    } else {
-        console.log('固定しない')
     }
 }
 
@@ -162,6 +179,7 @@ function copyAuthorBadge(clone) {
             const icon = document.createElement('div')
             icon.className = iconOrg.className
             icon.innerHTML = iconOrg.innerHTML
+            icon.classList.add('_yt-icon')
             iconOrg.parentNode.insertBefore(icon, iconOrg)
             iconOrg.outerHTML = ""
         }
@@ -171,7 +189,6 @@ function copyAuthorBadge(clone) {
 // 固定チャットを消す（手動）
 function removeFixedChat(node) {
     node.outerHTML = ""
-    console.log('けした2')
 }
 
 // 一定時間後に固定チャットを消す

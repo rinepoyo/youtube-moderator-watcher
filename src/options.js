@@ -1,11 +1,11 @@
-
-function save() {
+function save(event) {
+    event.preventDefault()
     M.Toast.dismissAll();
 
-    const time = document.querySelector('#time').value;
+    const fix_time = parseInt(document.querySelector('#fix_time').value, 10)
 
     chrome.storage.sync.set({
-        time: time
+        time: fix_time
     }, function () {
         M.toast({ html: '保存しました', displayLength: 2000 })
     })
@@ -14,10 +14,11 @@ function save() {
 
 function init() {
     loadOption().then((option) => {
-        const select = document.querySelector('#time');
-        select.value = option.time;
-        const instances = M.FormSelect.init(select);
-        select.addEventListener('change', save);
+        const fix_time = document.querySelector('#fix_time')
+        fix_time.value = option.time
+
+        const save_btn = document.querySelector('form')
+        save_btn.addEventListener('submit', save);
     });
 }
 

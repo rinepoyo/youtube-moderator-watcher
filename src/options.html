@@ -10,22 +10,20 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col s12">
+            <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="time">
-                            <option value="5">5秒</option>
-                            <option value="10">10秒</option>
-                            <option value="15">15秒</option>
-                            <option value="20">20秒</option>
-                            <option value="25">25秒</option>
-                            <option value="30" selected>30秒</option>
-                            <option value="60">60秒</option>
-                        </select>
-                        <label>発言から固定解除までの時間</label>
+                        <input value="" id="fix_time" type="number" min="0" max="999" placeholder="" class="validate"
+                            required>
+                        <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
+                        <span class="helper-text" data-error="エラー" data-success=""></span>
+
+                    </div>
+                    <div class="input-field col s12">
+                        <button id="save_btn" class="btn waves-effect waves-light" type="submit">保存</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

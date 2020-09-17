@@ -3,6 +3,11 @@
     "version": "0.1.0",
     "manifest_version": 2,
     "description": "YouTube Live のチャットで、モデレータとオーナーの発言を一定時間画面上に固定します。",
+    "icons": {
+        "16": "images/size16.png",
+        "48": "images/size48.png",
+        "128": "images/size128.png"
+    },
     "permissions": [
         "storage"
     ],

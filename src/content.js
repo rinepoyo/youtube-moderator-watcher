@@ -152,13 +152,17 @@ async function fixChat(node, timestamp) {
     if (fixTime === 0) {
         // 永続固定
         container.appendChild(clone)
-        return
+    } else {
+        // 指定時間固定
+        const removeTime = fixTime - (new Date().getTime() - timestamp)
+        if (removeTime > 0) {
+            container.appendChild(clone)
+            reserveRemoveFixedChat(clone, removeTime)
+        }
     }
-    const removeTime = fixTime - (new Date().getTime() - timestamp)
-    if (removeTime > 0) {
-        container.appendChild(clone)
-        reserveRemoveFixedChat(clone, removeTime)
-    }
+
+    // スクロール
+    container.scrollTop = container.scrollHeight
 }
 
 function copyAuthorBadge(clone) {

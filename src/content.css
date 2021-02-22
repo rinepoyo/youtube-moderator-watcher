@@ -2,6 +2,9 @@
     width:100%;
     position: absolute;
     z-index: 10;
+    
+    overflow-y: scroll;
+    max-height: 40%;
 
     color: var(--yt-live-chat-primary-text-color);    
     background: var(--yt-live-chat-background-color);

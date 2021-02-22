@@ -61,7 +61,8 @@ const parseCommentNode = async function (node) {
         const node = targets[0][0]
         const timestamp = targets[0][1]
         const scrollerTop = getScroller().scrollTop
-        if (node.offsetTop < scrollerTop) {
+        const fixedAreaHeight = getContainer().getBoundingClientRect().height
+        if (node.offsetTop < scrollerTop + fixedAreaHeight) {
             fixChat(node, timestamp)
             targets.shift()
         }

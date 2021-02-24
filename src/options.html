@@ -13,14 +13,20 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input value="" id="fix_time" type="number" min="0" max="999" placeholder="" class="validate"
-                            required>
-                        <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
-                        <span class="helper-text" data-error="エラー" data-success=""></span>
-
-                    </div>
-                    <div class="input-field col s12">
-                        <button id="save_btn" class="btn waves-effect waves-light" type="submit">保存</button>
+                        <p>
+                            <input value="" id="fix_time" type="number" min="0" max="999" placeholder="" class="validate" required>
+                            <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
+                            <span class="helper-text" data-error="エラー" data-success=""></span>
+                        </p>
+                        <p>
+                            <label>
+                                <input id="official_only" type="checkbox" class="filled-in" />
+                                <span>確認済みユーザのみ固定する</span>
+                            </label>
+                        </p>
+                        <p>
+                            <button id="save_btn" class="btn waves-effect waves-light" type="submit">保存</button>
+                        </p>
                     </div>
                 </div>
             </form>

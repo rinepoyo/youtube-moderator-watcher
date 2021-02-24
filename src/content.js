@@ -38,12 +38,6 @@ function getContainer() {
     return _container
 }
 
-// 固定時間
-async function getFixTime() {
-    const option = await loadOption();
-    return option.time * 1000
-}
-
 // オーナーとモデレータのチャットを抽出
 const parseCommentNode = async function (node) {
     // チャット以外のDOM変更は無視
@@ -81,6 +75,8 @@ const parseCommentNode = async function (node) {
 
 // チャットを固定する
 async function fixChat(node, timestamp) {
+    const option = await loadOption();
+
     // 固定用の枠
     const container = getContainer();
 
@@ -97,6 +93,9 @@ async function fixChat(node, timestamp) {
         const verified = node.querySelector('[type="verified"]')
         if (verified) {
             clone.classList.add('_verified_moderator')
+        } else if (option.official_only) {
+            // 確認済み以外が対象外なら止める
+            return
         }
     }
     clone.setAttribute('author-type', node.getAttribute('author-type'))
@@ -149,7 +148,7 @@ async function fixChat(node, timestamp) {
     clone.appendChild(close)
 
     // 固定時間を計算
-    const fixTime = await getFixTime();
+    const fixTime = option.time * 1000
     if (fixTime === 0) {
         // 永続固定
         container.appendChild(clone)

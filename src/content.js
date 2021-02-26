@@ -236,6 +236,9 @@ function startObserveIfExists() {
 }
 
 function initialize() {
+
+    refreshOption()
+
     // 設定変更の通知を監視
     chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
         switch (message.type) {
@@ -247,8 +250,6 @@ function initialize() {
         }
         sendResponse({})
     });
-
-    refreshOption()
 
     startObserveIfExists();
 }

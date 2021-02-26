@@ -235,9 +235,9 @@ function startObserveIfExists() {
     }
 }
 
-function initialize() {
+async function initialize() {
 
-    refreshOption()
+    await refreshOption()
 
     // 設定変更の通知を監視
     chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {

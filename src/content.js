@@ -13,6 +13,9 @@ let _scroller = null
 // 固定待ちデータ
 let targets = []
 
+// 設定値のキャッシュ
+let option = null
+
 // チャット表示領域
 function getScroller() {
     if (!_scroller) {
@@ -64,19 +67,23 @@ const parseCommentNode = async function (node) {
 
     // モデレータ、オーナー以外のチャットは無視
     const authorName = node.querySelector('#author-name')
-    if (authorName.className.indexOf('owner') >= 0 ||
-        authorName.className.indexOf('moderator') >= 0) {
+    if (authorName) {
+        const userName = authorName.textContent
+        const verified = node.querySelector('[type="verified"]')
 
-        // 固定待ちデータに追加
-        const timestamp = new Date().getTime()
-        targets.push([node, timestamp])
+        if (authorName.className.indexOf('owner') >= 0 ||
+            (authorName.className.indexOf('moderator') >= 0 && (verified || !option.official_only)) ||
+            option.names.indexOf(userName) != -1) {
+
+            // 固定待ちデータに追加
+            const timestamp = new Date().getTime()
+            targets.push([node, timestamp])
+        }
     }
 }
 
 // チャットを固定する
 async function fixChat(node, timestamp) {
-    const option = await loadOption();
-
     // 固定用の枠
     const container = getContainer();
 
@@ -93,9 +100,6 @@ async function fixChat(node, timestamp) {
         const verified = node.querySelector('[type="verified"]')
         if (verified) {
             clone.classList.add('_verified_moderator')
-        } else if (option.official_only) {
-            // 確認済み以外が対象外なら止める
-            return
         }
     }
     clone.setAttribute('author-type', node.getAttribute('author-type'))
@@ -214,6 +218,11 @@ const observer = new MutationObserver((mutations) => {
     });
 });
 
+// 設定読込
+async function refreshOption() {
+    option = await loadOption();
+}
+
 // チャット領域が描画されるまで待ってから監視を開始
 function startObserveIfExists() {
     const items = document.querySelector('#items.yt-live-chat-item-list-renderer')
@@ -225,4 +234,22 @@ function startObserveIfExists() {
         window.setTimeout(startObserveIfExists, 500);
     }
 }
-startObserveIfExists();
+
+function initialize() {
+    // 設定変更の通知を監視
+    chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+        switch (message.type) {
+            case 'OPTIONS_UPDATE_NOTIFICATION':
+                refreshOption()
+                break;
+            default:
+                break;
+        }
+        sendResponse({})
+    });
+
+    refreshOption()
+
+    startObserveIfExists();
+}
+initialize();

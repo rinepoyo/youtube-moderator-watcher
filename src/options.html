@@ -14,15 +14,20 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <p>
-                            <input value="" id="fix_time" type="number" min="0" max="999" placeholder="" class="validate" required>
+                            <input value="" id="fix_time" type="number" min="0" max="999" placeholder=""
+                                class="validate" required>
                             <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
                             <span class="helper-text" data-error="エラー" data-success=""></span>
                         </p>
                         <p>
                             <label>
                                 <input id="official_only" type="checkbox" class="filled-in" />
-                                <span>確認済みユーザのみ固定する</span>
+                                <span>モデレータの確認済みユーザだけ固定する</span>
                             </label>
+                        </p>
+                        <p>
+                            <textarea id="names" class="materialize-textarea"></textarea>
+                            <label for="names">入力したユーザを固定する(完全一致する名前/一人ずつ改行)</label>
                         </p>
                         <p>
                             <button id="save_btn" class="btn waves-effect waves-light" type="submit">保存</button>

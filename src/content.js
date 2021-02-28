@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * 下記のライセンスで配布されている成果物を使用しています。
  * Material icons (https://material.io/resources/icons/)
@@ -43,6 +45,48 @@ function getContainer() {
 
 // オーナーとモデレータのチャットを抽出
 const parseCommentNode = async function (node) {
+
+    // NGワード
+    if (option.ngwords.length > 0) {
+        const messageNode = node.querySelector('#message')
+        if (messageNode) {
+            let match = false
+            let ngwords = option.ngwords
+            let message;
+
+            if (messageNode.childElementCount > 0) {
+                // 絵文字をテキストとして扱う
+                message = "";
+                for (const node of messageNode.childNodes) {
+                    message += node.textContent ? node.textContent : node.alt ? node.alt : ""
+                }
+            } else {
+                message = messageNode.textContent
+            }
+
+            if (option.ngwords_regexp) {
+                if (option.ngwordsPtn.some(ptn => ptn.test(message))) {
+                    match = true
+                }
+            } else {
+                if (option.ngwords.some(ngword => message.includes(ngword))) {
+                    match = true
+                }
+            }
+
+            if (match) {
+                console.log("NG > " + message)
+                //node.hidden = true
+                //messageNode.innerHTML = "<span title='message%'>非表示</span>"
+                messageNode.title = message
+                messageNode.textContent = '[非表示]'
+                messageNode.classList.add('ngmessage')
+                return
+            }
+        }
+    }
+
+
     // チャット以外のDOM変更は無視
     const nodeName = node.nodeName.toUpperCase()
     if (nodeName !== 'YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER' &&
@@ -221,6 +265,11 @@ const observer = new MutationObserver((mutations) => {
 // 設定読込
 async function refreshOption() {
     option = await loadOption();
+
+    // 正規表現パターンを事前に生成
+    if (option.ngwords_regexp && option.ngwords.length > 0) {
+        option.ngwordsPtn = option.ngwords.map(ngword => new RegExp(ngword))
+    }
 }
 
 // チャット領域が描画されるまで待ってから監視を開始

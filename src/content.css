@@ -27,6 +27,10 @@
     color: var(--yt-spec-icon-inactive);
 }
 
+.ngmessage {
+    font-style: italic !important;
+    opacity: 50% !important;
+}
 
 /* yt-*タグが本来持っていたスタイルを補完 */
 ._verified_moderator ._yt-live-chat-author-badge-renderer[type='verified'] {

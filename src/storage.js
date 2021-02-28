@@ -6,6 +6,7 @@ async function loadOption() {
             time: 30,
             official_only: false,
             names: [],
+            ignore_names: [],
             ngwords: [],
             ngwords_regexp: false
         }, function (option) {

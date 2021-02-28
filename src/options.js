@@ -7,6 +7,7 @@ function save(event) {
     const fix_time = parseInt(document.querySelector('#fix_time').value, 10)
     const official_only = document.querySelector('#official_only').checked
     const names = textToArray(document.querySelector('#names').value)
+    const ignore_names = textToArray(document.querySelector('#ignore_names').value)
     const ngwords = textToArray(document.querySelector('#ngwords').value)
     const ngwords_regexp = document.querySelector('#ngwords_regexp').checked
 
@@ -14,6 +15,7 @@ function save(event) {
         time: fix_time,
         official_only: official_only,
         names: names,
+        ignore_names: ignore_names,
         ngwords: ngwords,
         ngwords_regexp: ngwords_regexp
     }, function () {
@@ -48,6 +50,10 @@ function init() {
         const names = document.querySelector('#names')
         names.value = option.names.join('\n')
         M.textareaAutoResize(names);
+
+        const ignore_names = document.querySelector('#ignore_names')
+        ignore_names.value = option.ignore_names.join('\n')
+        M.textareaAutoResize(ignore_names);
 
         const ngwords = document.querySelector('#ngwords')
         ngwords.value = option.ngwords.join('\n')

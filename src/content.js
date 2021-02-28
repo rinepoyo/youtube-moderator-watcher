@@ -119,9 +119,12 @@ const parseCommentNode = async function (node) {
             (authorName.className.indexOf('moderator') >= 0 && (verified || !option.official_only)) ||
             option.names.indexOf(userName) != -1) {
 
-            // 固定待ちデータに追加
-            const timestamp = new Date().getTime()
-            targets.push([node, timestamp])
+            // 除外指定
+            if (option.ignore_names.indexOf(userName) == -1) {
+                // 固定待ちデータに追加
+                const timestamp = new Date().getTime()
+                targets.push([node, timestamp])
+            }
         }
     }
 }

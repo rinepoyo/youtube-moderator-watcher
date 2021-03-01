@@ -74,9 +74,13 @@ const parseCommentNode = async function (node) {
             }
 
             if (match) {
-                messageNode.title = message
-                messageNode.textContent = '[非表示]'
-                messageNode.classList.add('ngmessage')
+                if (option.hidden_message) {
+                    messageNode.title = message
+                    messageNode.textContent = '[非表示]'
+                    messageNode.classList.add('ngmessage')
+                } else {
+                    node.hidden = true
+                }
                 return
             }
         }

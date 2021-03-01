@@ -11,6 +11,7 @@ function save(event) {
     const ignore_names = textToArray(document.querySelector('#ignore_names').value)
     const ngwords = textToArray(document.querySelector('#ngwords').value)
     const ngwords_regexp = document.querySelector('#ngwords_regexp').checked
+    const hidden_message = document.querySelector('#hidden_message').checked
 
     chrome.storage.sync.set({
         time: fix_time,
@@ -19,7 +20,8 @@ function save(event) {
         names: names,
         ignore_names: ignore_names,
         ngwords: ngwords,
-        ngwords_regexp: ngwords_regexp
+        ngwords_regexp: ngwords_regexp,
+        hidden_message: hidden_message
     }, function () {
         init()
         M.toast({ html: '保存しました', displayLength: 2000 })
@@ -62,6 +64,7 @@ function init() {
         M.textareaAutoResize(ngwords);
 
         document.querySelector('#ngwords_regexp').checked = option.ngwords_regexp
+        document.querySelector('#hidden_message').checked = option.hidden_message
 
         const save_btn = document.querySelector('form')
         save_btn.addEventListener('submit', save);

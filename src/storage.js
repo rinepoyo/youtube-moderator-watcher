@@ -9,7 +9,8 @@ async function loadOption() {
             names: [],
             ignore_names: [],
             ngwords: [],
-            ngwords_regexp: false
+            ngwords_regexp: false,
+            hidden_message: false
         }, function (option) {
             resolve(option)
         })

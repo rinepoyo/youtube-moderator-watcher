@@ -51,7 +51,6 @@ const parseCommentNode = async function (node) {
         const messageNode = node.querySelector('#message')
         if (messageNode) {
             let match = false
-            let ngwords = option.ngwords
             let message;
 
             if (messageNode.childElementCount > 0) {
@@ -76,8 +75,6 @@ const parseCommentNode = async function (node) {
 
             if (match) {
                 console.log("NG > " + message)
-                //node.hidden = true
-                //messageNode.innerHTML = "<span title='message%'>非表示</span>"
                 messageNode.title = message
                 messageNode.textContent = '[非表示]'
                 messageNode.classList.add('ngmessage')
@@ -85,7 +82,6 @@ const parseCommentNode = async function (node) {
             }
         }
     }
-
 
     // チャット以外のDOM変更は無視
     const nodeName = node.nodeName.toUpperCase()
@@ -112,21 +108,59 @@ const parseCommentNode = async function (node) {
     // モデレータ、オーナー以外のチャットは無視
     const authorName = node.querySelector('#author-name')
     if (authorName) {
-        const userName = authorName.textContent
-        const verified = node.querySelector('[type="verified"]')
-
-        if (authorName.className.indexOf('owner') >= 0 ||
-            (authorName.className.indexOf('moderator') >= 0 && (verified || !option.official_only)) ||
-            option.names.indexOf(userName) != -1) {
-
+        let userName = ''
+        if (option.names.length > 0 || option.ignore_names.length > 0) {
+            userName = authorName.textContent
+        }
+        if (checkFix(node, authorName, userName)) {
             // 除外指定
-            if (option.ignore_names.indexOf(userName) == -1) {
-                // 固定待ちデータに追加
-                const timestamp = new Date().getTime()
-                targets.push([node, timestamp])
+            if (option.ignore_names.indexOf(userName) != -1) {
+                console.log('ignore ' + authorName.textContent)
+                return
+            }
+
+            // 固定待ちデータに追加
+            const timestamp = new Date().getTime()
+            targets.push([node, timestamp])
+        }
+    }
+}
+
+function checkFix(node, authorName, userName) {
+    if (option.fix_verified && authorName.className.indexOf('owner') >= 0) {
+        console.log('owner ' + authorName.textContent)
+        return true
+    }
+
+    if (option.fix_verified || option.fix_unverified) {
+        const moderator = authorName.className.indexOf('moderator') >= 0
+        if (moderator) {
+            if (option.fix_verified && option.fix_unverified) {
+                console.log('both ' + authorName.textContent)
+                return true
+            }
+
+            const verified = node.querySelector('[type="verified"]')
+            if (verified) {
+                if (option.fix_verified) {
+                    console.log('veri ' + authorName.textContent)
+                    return true
+                }
+            } else {
+                if (option.fix_unverified) {
+                    console.log('unveri ' + authorName.textContent)
+                    return true
+                }
             }
         }
     }
+
+    if (option.names.indexOf(userName) != -1) {
+        console.log('name ' + authorName.textContent)
+        return true
+    }
+
+    return false
 }
 
 // チャットを固定する

@@ -17,15 +17,15 @@
                             <div class="card-action">
                                 <span class="card-title">チャット固定設定</span>
                                 <p>
-                                    <input value="" id="fix_time" type="number" min="0" max="999" placeholder=""
-                                        class="validate" required>
-                                    <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
-                                    <span class="helper-text" data-error="エラー" data-success=""></span>
+                                    <label>
+                                        <input id="fix_verified" type="checkbox" class="filled-in" />
+                                        <span>確認済みユーザのモデレータ、チャンネル所有者を固定する</span>
+                                    </label>
                                 </p>
                                 <p>
                                     <label>
-                                        <input id="official_only" type="checkbox" class="filled-in" />
-                                        <span>確認済みユーザのモデレータだけ固定する</span>
+                                        <input id="fix_unverified" type="checkbox" class="filled-in" />
+                                        <span>確認済みユーザ以外のモデレータを固定する</span>
                                     </label>
                                 </p>
                                 <p>
@@ -35,6 +35,12 @@
                                 <p>
                                     <textarea id="ignore_names" class="materialize-textarea"></textarea>
                                     <label for="ignore_names">対象外にするユーザ名を指定する(一名毎に改行)</label>
+                                </p>
+                                <p>
+                                    <input value="" id="fix_time" type="number" min="0" max="999" placeholder=""
+                                        class="validate" required>
+                                    <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
+                                    <span class="helper-text" data-error="エラー" data-success=""></span>
                                 </p>
                             </div>
                         </div>

@@ -5,7 +5,8 @@ function save(event) {
     M.Toast.dismissAll();
 
     const fix_time = parseInt(document.querySelector('#fix_time').value, 10)
-    const official_only = document.querySelector('#official_only').checked
+    const fix_verified = document.querySelector('#fix_verified').checked
+    const fix_unverified = document.querySelector('#fix_unverified').checked
     const names = textToArray(document.querySelector('#names').value)
     const ignore_names = textToArray(document.querySelector('#ignore_names').value)
     const ngwords = textToArray(document.querySelector('#ngwords').value)
@@ -13,7 +14,8 @@ function save(event) {
 
     chrome.storage.sync.set({
         time: fix_time,
-        official_only: official_only,
+        fix_verified: fix_verified,
+        fix_unverified: fix_unverified,
         names: names,
         ignore_names: ignore_names,
         ngwords: ngwords,
@@ -44,8 +46,8 @@ function init() {
         const fix_time = document.querySelector('#fix_time')
         fix_time.value = option.time
 
-        const official_only = document.querySelector('#official_only')
-        official_only.checked = option.official_only
+        document.querySelector('#fix_verified').checked = option.fix_verified
+        document.querySelector('#fix_unverified').checked = option.fix_unverified
 
         const names = document.querySelector('#names')
         names.value = option.names.join('\n')

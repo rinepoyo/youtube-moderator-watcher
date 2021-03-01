@@ -74,7 +74,6 @@ const parseCommentNode = async function (node) {
             }
 
             if (match) {
-                console.log("NG > " + message)
                 messageNode.title = message
                 messageNode.textContent = '[非表示]'
                 messageNode.classList.add('ngmessage')
@@ -115,7 +114,6 @@ const parseCommentNode = async function (node) {
         if (checkFix(node, authorName, userName)) {
             // 除外指定
             if (option.ignore_names.indexOf(userName) != -1) {
-                console.log('ignore ' + authorName.textContent)
                 return
             }
 
@@ -128,7 +126,6 @@ const parseCommentNode = async function (node) {
 
 function checkFix(node, authorName, userName) {
     if (option.fix_verified && authorName.className.indexOf('owner') >= 0) {
-        console.log('owner ' + authorName.textContent)
         return true
     }
 
@@ -136,19 +133,16 @@ function checkFix(node, authorName, userName) {
         const moderator = authorName.className.indexOf('moderator') >= 0
         if (moderator) {
             if (option.fix_verified && option.fix_unverified) {
-                console.log('both ' + authorName.textContent)
                 return true
             }
 
             const verified = node.querySelector('[type="verified"]')
             if (verified) {
                 if (option.fix_verified) {
-                    console.log('veri ' + authorName.textContent)
                     return true
                 }
             } else {
                 if (option.fix_unverified) {
-                    console.log('unveri ' + authorName.textContent)
                     return true
                 }
             }
@@ -156,7 +150,6 @@ function checkFix(node, authorName, userName) {
     }
 
     if (option.names.indexOf(userName) != -1) {
-        console.log('name ' + authorName.textContent)
         return true
     }
 

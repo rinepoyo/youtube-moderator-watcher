@@ -18,6 +18,8 @@ let targets = []
 // 設定値のキャッシュ
 let option = null
 
+let hidden_message = ''
+
 // チャット表示領域
 function getScroller() {
     if (!_scroller) {
@@ -76,7 +78,7 @@ const parseCommentNode = async function (node) {
             if (match) {
                 if (option.hidden_message) {
                     messageNode.title = message
-                    messageNode.textContent = '[非表示]'
+                    messageNode.textContent = hidden_message
                     messageNode.classList.add('ngmessage')
                 } else {
                     node.hidden = true
@@ -321,6 +323,8 @@ function startObserveIfExists() {
 async function initialize() {
 
     await refreshOption()
+
+    hidden_message = chrome.i18n.getMessage('hidden_text');
 
     // 設定変更の通知を監視
     chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {

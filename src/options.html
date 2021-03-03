@@ -15,53 +15,53 @@
                     <div class="input-field col s12">
                         <div class="card">
                             <div class="card-action">
-                                <span class="card-title">チャット固定設定</span>
+                                <span id="fix_title" class="card-title">チャット固定設定</span>
                                 <p>
                                     <label>
                                         <input id="fix_verified" type="checkbox" class="filled-in" />
-                                        <span>確認済みユーザのモデレータ、チャンネル所有者を固定する</span>
+                                        <span id="fix_verified_label">確認済みユーザのモデレータ、チャンネル所有者を固定する</span>
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         <input id="fix_unverified" type="checkbox" class="filled-in" />
-                                        <span>確認済みユーザ以外のモデレータを固定する</span>
+                                        <span id="fix_unverified_label">確認済みユーザ以外のモデレータを固定する</span>
                                     </label>
                                 </p>
                                 <p>
                                     <textarea id="names" class="materialize-textarea"></textarea>
-                                    <label for="names">固定するユーザ名を指定(一名毎に改行)</label>
+                                    <label id="names_label" for="names">固定するユーザ名を指定(一名毎に改行)</label>
                                 </p>
                                 <p>
                                     <textarea id="ignore_names" class="materialize-textarea"></textarea>
-                                    <label for="ignore_names">対象外にするユーザ名を指定する(一名毎に改行)</label>
+                                    <label id="ignore_names_label" for="ignore_names">対象外にするユーザ名を指定する(一名毎に改行)</label>
                                 </p>
                                 <p>
-                                    <input value="" id="fix_time" type="number" min="0" max="999" placeholder=""
+                                    <input id="fix_time" value="" type="number" min="0" max="999" placeholder=""
                                         class="validate" required>
-                                    <label class="active" for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
-                                    <span class="helper-text" data-error="エラー" data-success=""></span>
+                                    <label id="fix_time_label" class="active"
+                                        for="fix_time">発言から固定解除までの時間(0～999秒、0=永続)</label>
                                 </p>
                             </div>
                         </div>
 
                         <div class="card">
                             <div class="card-action">
-                                <span class="card-title">NGワード設定</span>
+                                <span id="ngwords_title" class="card-title">NGワード設定</span>
                                 <p>
                                     <textarea id="ngwords" class="materialize-textarea"></textarea>
-                                    <label for="ngwords">一単語毎に改行</label>
+                                    <label id="ngwords_label" for="ngwords">一単語毎に改行</label>
                                 </p>
                                 <p>
                                     <label>
                                         <input id="ngwords_regexp" type="checkbox" class="filled-in" />
-                                        <span>正規表現を有効にする</span>
+                                        <span id="ngwords_regexp_label">正規表現を有効にする</span>
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         <input id="hidden_message" type="checkbox" class="filled-in" />
-                                        <span>チャットの文章だけを隠す(マウスオーバーで原文を表示)</span>
+                                        <span id="hidden_message_label">チャットの文章だけを隠す(マウスオーバーで原文を表示)</span>
                                     </label>
                                 </p>
                             </div>

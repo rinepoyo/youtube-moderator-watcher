@@ -44,6 +44,9 @@ function textToArray(value) {
 }
 
 function init() {
+
+    initMessage()
+
     loadOption().then((option) => {
         const fix_time = document.querySelector('#fix_time')
         fix_time.value = option.time
@@ -69,6 +72,20 @@ function init() {
         const save_btn = document.querySelector('form')
         save_btn.addEventListener('submit', save);
     });
+}
+
+function initMessage() {
+    document.querySelector("#fix_title").textContent = chrome.i18n.getMessage('option_fix_title');
+    document.querySelector("#fix_verified_label").textContent = chrome.i18n.getMessage('option_fix_verified');
+    document.querySelector("#fix_unverified_label").textContent = chrome.i18n.getMessage('option_fix_unverified');
+    document.querySelector("#names_label").textContent = chrome.i18n.getMessage('option_fix_names');
+    document.querySelector("#ignore_names_label").textContent = chrome.i18n.getMessage('option_fix_ignore_names');
+    document.querySelector("#fix_time_label").textContent = chrome.i18n.getMessage('option_fix_time');
+    document.querySelector("#ngwords_title").textContent = chrome.i18n.getMessage('option_ngwords_title');
+    document.querySelector("#ngwords_label").textContent = chrome.i18n.getMessage('option_ngwords_label');
+    document.querySelector("#ngwords_regexp_label").textContent = chrome.i18n.getMessage('option_ngwords_regexp');
+    document.querySelector("#hidden_message_label").textContent = chrome.i18n.getMessage('option_ngwords_hidden_message');
+    document.querySelector("#save_btn").textContent = chrome.i18n.getMessage('option_save_button');
 }
 
 init();

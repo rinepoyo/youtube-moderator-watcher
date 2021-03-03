@@ -1,0 +1,38 @@
+{
+    "option_fix_title": {
+        "message": "Chat Fix Settings"
+    },
+    "option_fix_verified": {
+        "message": "Fix verified moderator and channel owner."
+    },
+    "option_fix_unverified": {
+        "message": "Fix unverified moderators."
+    },
+    "option_fix_names": {
+        "message": "Specify user names to be fixed (new line for each name)"
+    },
+    "option_fix_ignore_names": {
+        "message": "Specify user names to be ignored (new line for each name)"
+    },
+    "option_fix_time": {
+        "message": "Fix Chat duration (0-999 seconds, 0=persistent)"
+    },
+    "option_ngwords_title": {
+        "message": "NG word setting"
+    },
+    "option_ngwords_label": {
+        "message": "New line after every word"
+    },
+    "option_ngwords_regexp": {
+        "message": "Enable regular expressions"
+    },
+    "option_ngwords_hidden_message": {
+        "message": "Hide only chat text (show original text on mouseover)"
+    },
+    "option_save_button": {
+        "message": "save"
+    },
+    "hidden_text": {
+        "message": "[hidden]"
+    }
+}

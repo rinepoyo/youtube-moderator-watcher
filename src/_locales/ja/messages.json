@@ -1,0 +1,38 @@
+{
+    "option_fix_title": {
+        "message": "チャット固定設定"
+    },
+    "option_fix_verified": {
+        "message": "確認済みユーザのモデレータ、チャンネル所有者を固定する"
+    },
+    "option_fix_unverified": {
+        "message": "確認済みユーザ以外のモデレータを固定する"
+    },
+    "option_fix_names": {
+        "message": "固定するユーザ名を指定(一名毎に改行)"
+    },
+    "option_fix_ignore_names": {
+        "message": "対象外にするユーザ名を指定する(一名毎に改行)"
+    },
+    "option_fix_time": {
+        "message": "発言から固定解除までの時間(0～999秒、0=永続)"
+    },
+    "option_ngwords_title": {
+        "message": "NGワード設定"
+    },
+    "option_ngwords_label": {
+        "message": "一単語毎に改行"
+    },
+    "option_ngwords_regexp": {
+        "message": "正規表現を有効にする"
+    },
+    "option_ngwords_hidden_message": {
+        "message": "チャットの文章だけを隠す(マウスオーバーで原文を表示)"
+    },
+    "option_save_button": {
+        "message": "保存"
+    },
+    "hidden_text": {
+        "message": "[非表示]"
+    }
+}

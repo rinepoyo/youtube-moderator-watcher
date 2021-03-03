@@ -12,6 +12,7 @@
         "storage",
         "tabs"
     ],
+    "default_locale": "en",
     "content_scripts": [
         {
             "run_at": "document_idle",

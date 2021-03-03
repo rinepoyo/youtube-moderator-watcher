@@ -1,4 +1,7 @@
 {
+    "extDescription": {
+        "message": "In a YouTube Live chat, the moderator's and owner's statements will be fixed on the screen for a certain period of time."
+    },
     "option_fix_title": {
         "message": "Chat Fix Settings"
     },

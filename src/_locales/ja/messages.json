@@ -1,4 +1,7 @@
 {
+    "extDescription": {
+        "message": "YouTube Live のチャットで、モデレータとオーナーの発言を一定時間画面上に固定します。"
+    },
     "option_fix_title": {
         "message": "チャット固定設定"
     },
